@@ -1,5 +1,9 @@
 package de.viadee.patterns.creational.builder;
 
-public interface Dough {
+public class Dough extends Ingredient {
+
+	public Dough(String name) {
+		super(name);
+	}
 
 }

@@ -1,14 +1,29 @@
 package de.viadee.patterns.creational.builder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class Pizza {
 	
 	private Dough dough;
 	
-	private List<Topping> toppings;
+	private List<Topping> toppings = new ArrayList<>();
 	
 	private Cheese cheese;
+
+	public Pizza() {
+	}
+
+	public Pizza(Dough dough, Cheese cheese, Topping... toppings) {
+		super();
+		this.dough = dough;
+		this.toppings = Arrays.asList(toppings);
+		this.cheese = cheese;
+	}
 
 	public Dough getDough() {
 		return dough;
@@ -34,6 +49,9 @@ public class Pizza {
 		this.cheese = cheese;
 	}
 	
+	public String toJson() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
 	
 
 }
