@@ -10,11 +10,11 @@ import de.viadee.patterns.creational.abstractfactory.EKlasse;
 import de.viadee.patterns.creational.abstractfactory.Fabia;
 import de.viadee.patterns.creational.abstractfactory.Model;
 
-public class LambdaClient {
+public class AbstractFactoryLambda {
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		LambdaClient lambdaFactory = new LambdaClient();
+		AbstractFactoryLambda lambdaFactory = new AbstractFactoryLambda();
 		Car fabia = lambdaFactory.getCarFactoryByModel(Model.FABIA).assemble();
 		Car a8 = lambdaFactory.getCarFactoryByModel(Model.A8).assemble();
 		Car eKlasse = lambdaFactory.getCarFactoryByModel(Model.EKLASSE).assemble();
@@ -39,7 +39,7 @@ public class LambdaClient {
 
 	private Map<Model, CarFactoryLambda<? extends Car>> carFactoryRegistry = new HashMap<>();
 
-	public LambdaClient() {
+	public AbstractFactoryLambda() {
 		carFactoryRegistry.put(Model.FABIA, () -> new Fabia("Skoda", "Fabia", 52));
 		carFactoryRegistry.put(Model.A8, () -> new A8("Audi", "A8", 190));
 		carFactoryRegistry.put(Model.EKLASSE, () -> new EKlasse("Mercedes", "E-Klasse", 110));

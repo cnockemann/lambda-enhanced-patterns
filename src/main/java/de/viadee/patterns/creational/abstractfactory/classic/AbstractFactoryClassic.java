@@ -6,17 +6,24 @@ import java.util.Map;
 import de.viadee.patterns.creational.abstractfactory.Car;
 import de.viadee.patterns.creational.abstractfactory.Model;
 
-public class ClassicClient {
+public class AbstractFactoryClassic {
 
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		ClassicClient classicFactory = new ClassicClient();
+		AbstractFactoryClassic classicFactory = new AbstractFactoryClassic();
 		Car fabia = classicFactory.getCarFactoryByModel(Model.FABIA).assemble();
-		Car a8 = classicFactory.getCarFactoryByModel(Model.A8).assemble();
-		Car eKlasse = classicFactory.getCarFactoryByModel(Model.EKLASSE).assemble();
+		System.out.println(fabia.toJson());
 		// Assembling Fabia...
+		// {"brand":"Skoda","model":"Fabia","ps":54}
+
+		Car a8 = classicFactory.getCarFactoryByModel(Model.A8).assemble();
+		System.out.println(a8.toJson());
 		// Assembling A8...
+		// {"brand":"Audi","model":"A8","ps":190}
+
+		Car eKlasse = classicFactory.getCarFactoryByModel(Model.EKLASSE).assemble();
+		System.out.println(eKlasse.toJson());
 		// Assembling E-Klasse...
+		// {"brand":"Mercedes","model":"E-Klasse","ps":110}
 
 		System.out.println("\nAssemble 3 Fabias in a row:");
 		for (int i = 0; i < 3; i++) {
@@ -33,7 +40,7 @@ public class ClassicClient {
 
 	}
 
-	public ClassicClient() {
+	public AbstractFactoryClassic() {
 		carFactoryRegistry.put(Model.FABIA, new FabiaFactory());
 		carFactoryRegistry.put(Model.A8, new A8Factory());
 		carFactoryRegistry.put(Model.EKLASSE, new EKlasseFactory());
