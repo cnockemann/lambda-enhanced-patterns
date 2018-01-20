@@ -14,3 +14,5 @@ public interface CarFactoryLambda<T extends Car> extends Supplier<T> {
 		return assemble();
 	}
 }
+
+

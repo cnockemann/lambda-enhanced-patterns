@@ -12,21 +12,28 @@ import de.viadee.patterns.creational.abstractfactory.Model;
 
 public class AbstractFactoryLambda {
 
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		AbstractFactoryLambda lambdaFactory = new AbstractFactoryLambda();
-		Car fabia = lambdaFactory.getCarFactoryByModel(Model.FABIA).assemble();
-		Car a8 = lambdaFactory.getCarFactoryByModel(Model.A8).assemble();
-		Car eKlasse = lambdaFactory.getCarFactoryByModel(Model.EKLASSE).assemble();
+		AbstractFactoryLambda abstractLambdaFactory = new AbstractFactoryLambda();
+		Car fabia = abstractLambdaFactory.getCarFactoryByModel(Model.FABIA).assemble();
+		System.out.println(fabia.toJson());
 		// Assembling Fabia...
+		// {"brand":"Skoda","model":"Fabia","ps":52}
+
+		Car a8 = abstractLambdaFactory.getCarFactoryByModel(Model.A8).assemble();
+		System.out.println(a8.toJson());
 		// Assembling A8...
+		// {"brand":"Audi","model":"A8","ps":190}
+
+		Car eKlasse = abstractLambdaFactory.getCarFactoryByModel(Model.EKLASSE).assemble();
+		System.out.println(eKlasse.toJson());
 		// Assembling E-Klasse...
+		// {"brand":"Mercedes","model":"E-Klasse","ps":110}
 
 		System.out.println("\nAssemble 3 Fabias in a row:");
-		Stream.generate(lambdaFactory.getCarFactoryByModel(Model.FABIA))
-				.limit(3)
-				.map(Car::toJson)
-				.forEach(System.out::println);
+		Stream.generate(abstractLambdaFactory.getCarFactoryByModel(Model.FABIA))
+			.limit(3)
+			.map(Car::toJson)
+			.forEach(System.out::println);
 		// Assemble 3 Fabias in a row:
 		// Assembling Fabia...
 		// {"brand":"Skoda","model":"Fabia","ps":52}
@@ -45,7 +52,6 @@ public class AbstractFactoryLambda {
 		carFactoryRegistry.put(Model.EKLASSE, () -> new EKlasse("Mercedes", "E-Klasse", 110));
 
 	}
-
 
 	public CarFactoryLambda<? extends Car> getCarFactoryByModel(Model model) {
 		return carFactoryRegistry.get(model);
