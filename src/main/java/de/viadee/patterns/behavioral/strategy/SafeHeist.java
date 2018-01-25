@@ -23,16 +23,16 @@ public class SafeHeist {
 		heist.chooseStrategy(new Dynamite());
 		heist.performHeist(safeToBeCracked);
 
-		System.out.println("\nLet's make this easy!");
-		heist.chooseStrategy(safe -> safe.setOpen(true));
-		heist.performHeist(safeToBeCracked);
-
 		// Trying to pick the lock...
 		// Safe is open = false
 		//
 		// BOOM!
 		// Safe is open = false
-		//
+
+		System.out.println("\nLet's make this easy!");
+		heist.chooseStrategy(safe -> safe.setOpen(true));
+		heist.performHeist(safeToBeCracked);
+
 		// Let's make this easy!
 		// Safe is open = true
 	}

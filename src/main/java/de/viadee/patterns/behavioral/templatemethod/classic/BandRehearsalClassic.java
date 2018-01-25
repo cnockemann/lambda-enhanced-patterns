@@ -6,9 +6,7 @@ import java.util.List;
 public class BandRehearsalClassic {
 
 	public static void main(String[] args) {
-		GuitarPlayer guitarPlayer = new GuitarPlayer();
-		Singer singer = new Singer();
-		List<Musician> band = Arrays.asList(guitarPlayer, singer);
+		List<Musician> band = Arrays.asList(new GuitarPlayer(), new Singer());
 
 		for (Musician musician : band) {
 			musician.performRehearsal();

@@ -23,6 +23,7 @@ public class LambdaPizzeria {
 	}
 
 	public static PizzaBuilderLambda makePizza() {
+		// Currying:
 		return dough -> cheese -> topping1 -> topping2 -> new Pizza(dough, cheese, topping1, topping2);
 	}
 
