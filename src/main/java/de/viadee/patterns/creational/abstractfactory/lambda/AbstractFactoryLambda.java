@@ -2,6 +2,7 @@ package de.viadee.patterns.creational.abstractfactory.lambda;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import de.viadee.patterns.creational.abstractfactory.A8;
@@ -31,9 +32,9 @@ public class AbstractFactoryLambda {
 
 		System.out.println("\nAssemble 3 Fabias in a row:");
 		Stream.generate(abstractLambdaFactory.getCarFactoryByModel(Model.FABIA))
-			.limit(3)
-			.map(Car::toJson)
-			.forEach(System.out::println);
+				.limit(3)
+				.map(Car::toJson)
+				.forEach(System.out::println);
 		// Assemble 3 Fabias in a row:
 		// Assembling Fabia...
 		// {"brand":"Skoda","model":"Fabia","ps":52}
@@ -41,6 +42,13 @@ public class AbstractFactoryLambda {
 		// {"brand":"Skoda","model":"Fabia","ps":52}
 		// Assembling Fabia...
 		// {"brand":"Skoda","model":"Fabia","ps":52}
+
+		Car absent = null;
+		Car present = Optional.ofNullable(absent)
+				.orElseGet(abstractLambdaFactory.getCarFactoryByModel(Model.A8));
+		System.out.println(present.toJson());
+		// Assembling A8...
+		// {"brand":"Audi","model":"A8","ps":190}
 
 	}
 
